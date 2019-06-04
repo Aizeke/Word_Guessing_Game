@@ -1,0 +1,10 @@
+body {
+    background-image: url("https://images5.alphacoders.com/870/870874.jpg");
+
+}
+
+container h1 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+}
