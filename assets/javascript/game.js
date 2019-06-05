@@ -14,18 +14,45 @@ window.onload = function () {
 
     // Creates Buttons 
     var createButtons = function() {
+        //Links to the button div
         var buttonsElem = document.getElementById('buttons');
-
+        // Creates the alph buttons
         for( var i = 0; i < alphabet.length; i++) {
+
             var btn = document.createElement('button');
+            btn.className = 'btn btn-outline-light letter';
             btn.innerHTML = alphabet[i];
             buttonsElem.appendChild(btn);
         }
     }
 
+    // User Guesses
+
+    var guessedLetters = function() {
+        var corretLetter = sda;
+    }
+
+    var showLives = function () {
+        livesElem = document.getElementById('gameLives');
+
+        livesElem.innerHTML = "You have " + lives + " lives";
+        if (lives < 1) {
+          livesElem.innerHTML = "Game Over";
+        }
+
+        for (var i = 0; i < userGuesses.length; i++) {
+          if (counter === userGuesses.length) {
+            lives.innerHTML = "You Win!";
+          }
+        }
+      }
+
     var runGame = function () {
+
+        lives = 10;
         createButtons();
 
+        showLives()
     }
 
     runGame();
