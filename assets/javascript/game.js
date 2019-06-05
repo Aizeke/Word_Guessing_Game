@@ -26,7 +26,8 @@ window.onload = function () {
       // Event in order to click the button and activate it
       btn.addEventListener("click", function () {
         var userGuess = (this.innerHTML);
-        this.setAttribute("class", "active");
+        this.setAttribute("class", "btn btn-outline-light active");
+        this.setAttribute("disabled", "disabled")
         this.click = null;
         // for loop to count the guesses of the user and add it to the guesses array;
         for (var i = 0; i < words.length; i++) {
