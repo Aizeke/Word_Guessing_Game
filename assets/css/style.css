@@ -1,6 +1,7 @@
 body {
     background-image: url("https://images5.alphacoders.com/870/870874.jpg");
-
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 container h1 {
@@ -18,4 +19,9 @@ container h1 {
     font-size: 20px;
     font-family: 'Quicksand', sans-serif;
     font-weight: 500;
+}
+
+
+.active {
+    
 }
