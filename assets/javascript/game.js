@@ -8,8 +8,9 @@ window.onload = function () {
   var wordArr;
 
   // Variables to hold in the data
-  var userAnswer;
+  var guessed;
   var userGuesses = [];
+  var underscoreArr = [];
   var lives;
   var counter;
 
@@ -26,62 +27,50 @@ window.onload = function () {
       btn.innerHTML = alphabet[i];
       buttonsElem.appendChild(btn);
 
-      correctChoice(btn);
+      btn.addEventListener("click", function () {
+        var buttonClicked = (this.innerHTML);
+        this.setAttribute("class", "btn btn-outline-light active letter");
+        this.onclick = null;
+
+        for (var i = 0; i < wordArr.length; i++) {
+
+          if (wordArr[i] === buttonClicked) {
+            underscoreArr[i].innerHTML = buttonClicked;
+            counter += 1;
+          }
+        }
+        
+        console.log(word);
+        console.log(buttonClicked);
+        
+        this.setAttribute("disabled", "disabled");
+        userGuesses.push(buttonClicked);
+      })
     }
   }
 
-  var correctChoice = function (btn) {
-    // Event in order to click the button and activate it
-    btn.addEventListener("click", function () {
-      var buttonClicked = (this.innerHTML);
-      this.setAttribute("class", "btn btn-outline-light active letter");
-      this.setAttribute("disabled", "disabled");
-      this.onclick = null;
-
-      userGuesses.push(buttonClicked);
-
-      // If this text is equal to the same letter 
-      // of the word display on screen disable the button.
-      // increment the counter;
-      var changeVal = document.getElementsByClassName('underscore');
-
-      console.log(changeVal);
-
-      for (var i = 0; i < wordArr.length; i++) {
-        if (buttonClicked === wordArr[i]) {
-          
-          // this.setAttribute("class", "btn btn-outline-light active letter");
-          // this.setAttribute("disabled", "disabled");
-        }
-      }
-      //else decriment lives also disable the button;
-
-      console.log("User Answer: " + buttonClicked);
-
-    })
-  }
-
-  var underScoresElem = document.getElementById('guessedLetters');
+  // Selects the div
   // displayed underscores
   var underScores = function () {
-    // Selects the div
-    var createDiv = document.createElement('div');
-    //===========================================
-    for (var i = 0; i < word.length; i++) {
+    var underScoresElem = document.getElementById('guessedLetters');
+    // Creates dynamic divs for the underscores
+    // setting values and class to underscore.
+    for (var i = 0; i < wordArr.length; i++) {
 
-      createDiv.setAttribute('class', 'underscore');
-      createDiv.setAttribute('value', word[i]);
+      guessed = document.createElement('div');
 
-      createDiv.innerHTML = '_';
+      guessed.setAttribute('class', 'underscore');
+      guessed.setAttribute('value', word[i]);
 
-      underScoresElem.appendChild(createDiv);
+      guessed.innerHTML = '_';
 
-      console.log(createDiv);
+      underscoreArr.push(guessed);
+      underScoresElem.appendChild(guessed);
     }
-
   }
 
   var livesElem = document.getElementById('gameLives');
+
   var showLives = function () {
 
     livesElem.innerHTML = "You have " + lives + " lives";
