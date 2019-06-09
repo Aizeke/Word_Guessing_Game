@@ -25,9 +25,16 @@ container h1 {
     
 }
 
-#underscore {
+.right-col {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: whitesmoke;
+    text-shadow: 1px 1px 5px orangered; 
+}
+
+.underscore {
     display: inline;
     padding: 2px;
-    font-size: 40px;
     text-align: center;
 }

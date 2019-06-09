@@ -3,8 +3,9 @@ window.onload = function () {
   var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
     'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
     't', 'u', 'v', 'w', 'x', 'y', 'z'];
-  // var to hold the words to be guessed
+  // var to hold the word to be guessed
   var word;
+  var wordArr;
 
   // Variables to hold in the data
   var userAnswer;
@@ -13,9 +14,10 @@ window.onload = function () {
   var counter;
 
   // Creates Buttons 
+  // Links to the button div
+  var buttonsElem = document.getElementById('buttons');
+
   var createButtons = function () {
-    // Links to the button div
-    var buttonsElem = document.getElementById('buttons');
     // Creates the alph buttons
     for (var i = 0; i < alphabet.length; i++) {
 
@@ -23,53 +25,71 @@ window.onload = function () {
       btn.className = 'btn btn-outline-light letter';
       btn.innerHTML = alphabet[i];
       buttonsElem.appendChild(btn);
-      // Event in order to click the button and activate it
-      btn.addEventListener("click", function () {
-        var userGuess = (this.innerHTML);
-        this.setAttribute("class", "btn btn-outline-light active letter");
-        this.setAttribute("disabled", "disabled")
-        this.click = null;
-        // for loop to count the guesses of the user and add it to the guesses array;
-        for (var i = 0; i < word.length; i++) {
-          if (word[i] === userGuess) {
-            userGuesses[i].innerHTML = userGuess;
-            counter++;
-          }
-        }
-      });
+
+      correctChoice(btn);
     }
   }
 
-  // displayed underscores
+  var correctChoice = function (btn) {
+    // Event in order to click the button and activate it
+    btn.addEventListener("click", function () {
+      var buttonClicked = (this.innerHTML);
+      this.setAttribute("class", "btn btn-outline-light active letter");
+      this.setAttribute("disabled", "disabled");
+      this.onclick = null;
 
+      userGuesses.push(buttonClicked);
+
+      // If this text is equal to the same letter 
+      // of the word display on screen disable the button.
+      // increment the counter;
+      var changeVal = document.getElementsByClassName('underscore');
+
+      console.log(changeVal);
+
+      for (var i = 0; i < wordArr.length; i++) {
+        if (buttonClicked === wordArr[i]) {
+          
+          // this.setAttribute("class", "btn btn-outline-light active letter");
+          // this.setAttribute("disabled", "disabled");
+        }
+      }
+      //else decriment lives also disable the button;
+
+      console.log("User Answer: " + buttonClicked);
+
+    })
+  }
+
+  var underScoresElem = document.getElementById('guessedLetters');
+  // displayed underscores
   var underScores = function () {
     // Selects the div
-    var underScoresElem = document.getElementById('guessedLetters');
-
+    var createDiv = document.createElement('div');
+    //===========================================
     for (var i = 0; i < word.length; i++) {
-      var createDiv = document.createElement('div');
-      createDiv.setAttribute('id', 'underscore');
+
+      createDiv.setAttribute('class', 'underscore');
+      createDiv.setAttribute('value', word[i]);
 
       createDiv.innerHTML = '_';
-      userGuesses.push(userAnswer);
 
       underScoresElem.appendChild(createDiv);
+
+      console.log(createDiv);
     }
 
   }
 
-  livesElem = document.getElementById('gameLives');
-
+  var livesElem = document.getElementById('gameLives');
   var showLives = function () {
-    livesElem.innerHTML = "You have " + lives + " lives";
-    if (lives < 1) {
-      livesElem.innerHTML = "Game Over";
-    }
 
-    for (var i = 0; i < userGuesses.length; i++) {
-      if (counter === userGuesses.length) {
-        lives.innerHTML = "You Win!";
-      }
+    livesElem.innerHTML = "You have " + lives + " lives";
+
+    if (lives < 1) {
+      livesElem.innerHTML = "You Lost...";
+    } else if (counter === wordArr.length) {
+      livesElem.innerHTML = "You Win!";
     }
   }
 
@@ -78,17 +98,18 @@ window.onload = function () {
     var words = ["EVANGELION", "ANGELS", "GENESIS", "BERSERKER"];
 
     word = words[Math.floor(Math.random() * words.length)];
-    
+    wordArr = word.split('');
+
     createButtons();
 
-    lives = 10;
-    userGuesses = [ ];
+    userGuesses = [];
     lives = 10;
     counter = 0;
     underScores();
     showLives();
 
     console.log(word);
+    console.log(wordArr);
   }
 
   runGame();
