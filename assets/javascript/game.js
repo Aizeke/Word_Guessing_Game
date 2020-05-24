@@ -19,35 +19,50 @@ window.onload = function () {
   var buttonsElem = document.getElementById('buttons');
 
   var createButtons = function () {
-    // Creates the alph buttons
+    // Creates the alphabet buttons
     for (var i = 0; i < alphabet.length; i++) {
 
       var btn = document.createElement('button');
       btn.className = 'btn btn-outline-light letter';
       btn.innerHTML = alphabet[i];
+      btn.setAttribute("id", "alphaLetters");
       buttonsElem.appendChild(btn);
 
+      // addEventListener in order to click on dynamic buttons
       btn.addEventListener("click", function () {
         var buttonClicked = (this.innerHTML);
-        this.setAttribute("class", "btn btn-outline-light active letter");
+        this.setAttribute("class", "btn btn-outline-light letter");
         this.onclick = null;
+        editScore(buttonClicked);
 
-        for (var i = 0; i < wordArr.length; i++) {
-
-          if (wordArr[i] === buttonClicked) {
-            underscoreArr[i].innerHTML = buttonClicked;
-            counter += 1;
-          }
-        }
-        
-        console.log(word);
-        console.log(buttonClicked);
-        
         this.setAttribute("disabled", "disabled");
-        userGuesses.push(buttonClicked);
       })
     }
   }
+
+  var editScore = function (e) {
+
+    // Holds Button Pressed To Compare It With wordArr
+    var guess = e.toUpperCase();
+    console.log("Guess = " + guess);
+
+    for (var i = 0; i < wordArr.length; i++) {
+      if (wordArr[i] === guess) {
+        userGuesses.push(guess);
+        console.log(userGuesses);
+        counter += 1;
+      }
+    }
+
+    var j = (word.indexOf(guess));
+    if (j === -1) {
+      lives -= 1;
+      showLives()
+    } else {
+      showLives();
+    }
+  }
+
 
   // Selects the div
   // displayed underscores
@@ -55,6 +70,7 @@ window.onload = function () {
     var underScoresElem = document.getElementById('guessedLetters');
     // Creates dynamic divs for the underscores
     // setting values and class to underscore.
+
     for (var i = 0; i < wordArr.length; i++) {
 
       guessed = document.createElement('div');
@@ -84,7 +100,7 @@ window.onload = function () {
 
   var runGame = function () {
 
-    var words = ["EVANGELION", "ANGELS", "GENESIS", "BERSERKER"];
+    var words = ["EVANGELION", "ANGELS", "GENESIS", "BERSERKER", "ASUKA", "NERV", "MECHA", "SHINJI"];
 
     word = words[Math.floor(Math.random() * words.length)];
     wordArr = word.split('');

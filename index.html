@@ -6,21 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hang Man</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
-    <logo>
-        <div class="row justify-content-center">
-            <img class="logoImg " src="https://ya-webdesign.com/images/neon-genesis-evangelion-png-2.png"
-                alt="Neon Genesis Logo">
-        </div>
-    </logo>
 
-    <container>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <img class="logoImg " src="https://ya-webdesign.com/images/neon-genesis-evangelion-png-2.png"
+                    alt="Neon Genesis Logo">
+            </div>
+        </div>
+    </div>
+
+    <container class="container my-5">
         <div class="row justify-content-center mt-5">
 
             <div class="col-md-3">
@@ -29,10 +31,11 @@
             </div>
 
             <div class="col-md-3 right-col">
-                <h1>Press The Letters To Start!</h1>
+                <h1>Press Down On A Letter To Start!</h1>
 
                 <div class="row justify-content-center">
                     <div id="guessedLetters"></div>
+                    <!-- <ul id="guessedLetters"></ul> -->
                 </div>
 
                 <div class="row justify-content-center">
@@ -47,8 +50,9 @@
         </div>
     </container>
 
+    <!-- Load JS for Game -->
     <script src="./assets/javascript/game.js"></script>
-
+    <!-- <script src="./assets/javascript/logic.js"></script> -->
 </body>
 
 </html>

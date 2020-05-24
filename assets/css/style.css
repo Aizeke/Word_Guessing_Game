@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap');
+
 body {
     background-image: url("https://images5.alphacoders.com/870/870874.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-container h1 {
+h1 {
     font-family: 'Quicksand', sans-serif;
     font-weight: 700;
     font-size: 32px;
@@ -21,8 +23,8 @@ container h1 {
     font-weight: 500;
 }
 
-.active {
-    
+.row {
+    margin: 0;
 }
 
 .right-col {
@@ -37,4 +39,5 @@ container h1 {
     display: inline;
     padding: 2px;
     text-align: center;
+    margin: 0 5px 0 5px;
 }
