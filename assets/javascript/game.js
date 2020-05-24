@@ -46,6 +46,8 @@ window.onload = function () {
     var guess = e.toUpperCase();
     console.log("Guess = " + guess);
 
+    displayLetter(guess);
+
     for (var i = 0; i < wordArr.length; i++) {
       if (wordArr[i] === guess) {
         userGuesses.push(guess);
@@ -55,6 +57,7 @@ window.onload = function () {
     }
 
     var j = (word.indexOf(guess));
+
     if (j === -1) {
       lives -= 1;
       showLives()
@@ -63,9 +66,9 @@ window.onload = function () {
     }
   }
 
-
   // Selects the div
   // displayed underscores
+  // When Key is pressed compare it to the values of underscore.
   var underScores = function () {
     var underScoresElem = document.getElementById('guessedLetters');
     // Creates dynamic divs for the underscores
@@ -83,6 +86,23 @@ window.onload = function () {
       underscoreArr.push(guessed);
       underScoresElem.appendChild(guessed);
     }
+  }
+
+  var displayLetter = function (e) {
+
+    var ancestor = document.getElementById('guessedLetters'),
+      descendents = ancestor.getElementsByTagName('*');
+    // gets descendent of ancestor by class name UNDERSCORE.
+
+    for (var i = 0; i < descendents.length; ++i) {
+
+      console.log("descendents: " + descendents[i].textContent + " Value: " + descendents[i].getAttribute('value'));
+
+      if( e === descendents[i].getAttribute('value')) {
+        descendents[i].innerHTML = e;
+      }
+    }
+
   }
 
   var livesElem = document.getElementById('gameLives');
