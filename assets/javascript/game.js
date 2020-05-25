@@ -44,14 +44,12 @@ window.onload = function () {
 
     // Holds Button Pressed To Compare It With wordArr
     var guess = e.toUpperCase();
-    console.log("Guess = " + guess);
 
     displayLetter(guess);
 
     for (var i = 0; i < wordArr.length; i++) {
       if (wordArr[i] === guess) {
         userGuesses.push(guess);
-        console.log(userGuesses);
         counter += 1;
       }
     }
@@ -96,13 +94,17 @@ window.onload = function () {
 
     for (var i = 0; i < descendents.length; ++i) {
 
-      console.log("descendents: " + descendents[i].textContent + " Value: " + descendents[i].getAttribute('value'));
-
-      if( e === descendents[i].getAttribute('value')) {
+      if (e === descendents[i].getAttribute('value')) {
         descendents[i].innerHTML = e;
       }
     }
 
+  }
+
+  // display play button
+  document.getElementById("playAgain").onclick = function () {
+    location.reload();
+    document.getElementById("playAgain").setAttribute("class", "invisible btn btn-outline-light");
   }
 
   var livesElem = document.getElementById('gameLives');
@@ -111,10 +113,14 @@ window.onload = function () {
 
     livesElem.innerHTML = "You have " + lives + " lives";
 
+    var playAgainBtn = document.getElementById("playAgain");
+
     if (lives < 1) {
       livesElem.innerHTML = "You Lost...";
+      playAgainBtn.setAttribute("class", "visible btn btn-outline-light");
     } else if (counter === wordArr.length) {
       livesElem.innerHTML = "You Win!";
+      playAgainBtn.setAttribute("class", "visible btn btn-outline-light");
     }
   }
 
