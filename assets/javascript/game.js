@@ -113,6 +113,40 @@ window.onload = function () {
 
     livesElem.innerHTML = "You have " + lives + " lives";
 
+    var img = document.getElementById('hangman');
+
+    switch (lives) {
+      case 9:
+        img.src = "./assets/images/Eva01.png";
+        break;
+      case 8:
+        img.src = "./assets/images/Eva02.png";
+        break;
+      case 7:
+        img.src = "./assets/images/Eva03.png";
+        break;
+      case 6:
+        img.src = "./assets/images/Eva04.png";
+        break;
+      case 5:
+        img.src = "./assets/images/Eva05.png";
+        break;
+      case 4:
+        img.src = "./assets/images/Eva06.png";
+        break;
+      case 3:
+        img.src = "./assets/images/Eva07.png";
+        break;
+      case 2:
+        img.src = "./assets/images/Eva08.png";
+        break;
+      case 1:
+        img.src = "./assets/images/Eva09.png";
+        break;
+      default:
+        img.src = "./assets/images/Eva00.png";
+    }
+
     var playAgainBtn = document.getElementById("playAgain");
 
     if (lives < 1) {
